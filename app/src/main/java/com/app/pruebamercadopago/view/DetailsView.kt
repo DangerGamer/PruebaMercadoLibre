@@ -1,5 +1,6 @@
 package com.app.pruebamercadopago.view
 
+import Attribute
 import Results
 import android.annotation.SuppressLint
 import android.content.Intent
@@ -7,9 +8,10 @@ import android.os.Bundle
 import android.text.SpannableString
 import android.text.Spanned
 import android.text.style.StrikethroughSpan
-import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.LinearLayout
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -55,7 +57,7 @@ class DetailsView : AppCompatActivity(), OnClickListener{
 
             tvNombre.text = productoSeleccionado.title
             Picasso.get().load(productoSeleccionado.thumbnail.replace("http:","https:")).into(ivProducto)
-            val precioAnterior = productoSeleccionado.original_price ?: 0
+            val precioAnterior = productoSeleccionado.original_price
             if (precioAnterior != 0) {
                 val spannable = SpannableString("$ ${formatter.format(precioAnterior)}") //modificacion para texto tachado
                 spannable.setSpan(StrikethroughSpan(), 0, spannable.length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
@@ -66,10 +68,23 @@ class DetailsView : AppCompatActivity(), OnClickListener{
             if (productoSeleccionado.available_quantity.toInt() > 50) {
                 tvCantidadStock.text = "(+50 disponibles)"
             } else {
-                tvCantidadStock.text = "(${productoSeleccionado.available_quantity.toInt() ?: 0} disponibles)"
+                tvCantidadStock.text = "(${productoSeleccionado.available_quantity.toInt()} disponibles)"
+            }
+
+            for (i in productoSeleccionado.attributes){
+                lyContenidoDetalle.addView(createTextView(i))
             }
         }
+    }
 
+    @SuppressLint("SetTextI18n")
+    private fun createTextView(attribute: Attribute): TextView{
+        val layoutParams = LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,LinearLayout.LayoutParams.WRAP_CONTENT)
+        val textView = TextView(this)
+        textView.text = "- ${attribute.name}: ${attribute.value_name}"
+        textView.layoutParams = layoutParams
+        textView.setPaddingRelative(16, 10, 0,0 )
+        return textView
     }
 
     //administracion de eventos onclick

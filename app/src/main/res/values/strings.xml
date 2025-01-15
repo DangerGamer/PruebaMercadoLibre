@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">PruebaMercadoPago</string>
+    <string name="ver_los_medio_de_pago">Ver los medio de pago</string>
+    <string name="caracteristicas_del_producto">Características del producto</string>
+    <string name="stock_disponible">Stock disponible</string>
+    <string name="comprar_ahora">Comprar ahora</string>
+    <string name="agregar_al_carrito">Agregar al carrito</string>
+</resources>

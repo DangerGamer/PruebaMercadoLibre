@@ -114,6 +114,31 @@
                     android:layout_height="wrap_content"
                     android:textSize="30sp" />
 
+                <LinearLayout
+                    android:id="@+id/lyCupon"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:layout_marginTop="10dp">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/cupon"
+                        android:background="@color/blueLight"/>
+
+                    <TextView
+                        android:id="@+id/tvCupon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:paddingRight="5dp"
+                        android:paddingLeft="5dp"
+                        android:textColor="@color/blueDark"
+                        android:background="@color/blueLight"
+                        android:gravity="center"/>
+
+                </LinearLayout>
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -64,7 +64,16 @@ class DetailsView : AppCompatActivity(), OnClickListener{
                 tvPrecioAnterior.text = spannable
             }
             tvPrecioActual.text = "$ ${formatter.format(productoSeleccionado.price)}"
+
+            if(productoSeleccionado.sale_price.type.equals("promotion")){
+                if(productoSeleccionado.sale_price.metadata.get("campaign_discount_percentage") != null){
+                    binding.lyCupon.visibility = View.VISIBLE
+                    binding.tvCupon.text = "Cupón ${productoSeleccionado.sale_price.metadata.get("campaign_discount_percentage")}% OFF"
+                }
+            }
+
             tvCantidadMin.text = "Cantidad: 1"
+
             if (productoSeleccionado.available_quantity.toInt() > 50) {
                 tvCantidadStock.text = "(+50 disponibles)"
             } else {
